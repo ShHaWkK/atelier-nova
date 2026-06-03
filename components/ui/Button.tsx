@@ -94,25 +94,53 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const Comp = asChild ? Slot : 'button'
+    const buttonClass = cn(buttonVariants({ variant, size }), className)
+
+    const iconLeft = loading ? (
+      <Loader2 className="h-4 w-4 animate-spin flex-shrink-0" strokeWidth={1.5} />
+    ) : leftIcon ? (
+      <span className="flex-shrink-0">{leftIcon}</span>
+    ) : null
+
+    const iconRight = !loading && rightIcon ? (
+      <span className="flex-shrink-0">{rightIcon}</span>
+    ) : null
+
+    // When asChild, Slot requires exactly ONE React element child.
+    // Inject icons inside the child element by cloning it.
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<{ className?: string; children?: React.ReactNode }>
+      return (
+        <Slot
+          ref={ref}
+          className={buttonClass}
+          aria-disabled={disabled || loading}
+          {...props}
+        >
+          {React.cloneElement(child, {
+            children: (
+              <>
+                {iconLeft}
+                {child.props.children}
+                {iconRight}
+              </>
+            ),
+          })}
+        </Slot>
+      )
+    }
 
     return (
-      <Comp
+      <button
         ref={ref}
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={buttonClass}
         disabled={disabled || loading}
         {...props}
       >
-        {loading ? (
-          <Loader2 className="h-4 w-4 animate-spin" strokeWidth={1.5} />
-        ) : (
-          leftIcon && <span className="flex-shrink-0">{leftIcon}</span>
-        )}
+        {iconLeft}
         {children}
-        {!loading && rightIcon && (
-          <span className="flex-shrink-0">{rightIcon}</span>
-        )}
-      </Comp>
+        {iconRight}
+      </button>
     )
   }
 )

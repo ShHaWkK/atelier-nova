@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  type      String
+  subject   String?
+  message   String?
+  status    String   @default("new")
+  priority  String   @default("normal")
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Quote {
+  id           String   @id @default(cuid())
+  quoteNumber  String   @unique
+  clientName   String
+  email        String
+  company      String?
+  phone        String?
+  sector       String?
+  projectType  String?
+  budget       String?
+  delay        String?
+  pageCount    String?
+  features     String   @default("[]")
+  maintenance  Boolean  @default(false)
+  estimateMin  Int?
+  estimateMax  Int?
+  message      String?
+  status       String   @default("draft")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Booking {
+  id          String   @id @default(cuid())
+  clientName  String
+  email       String
+  phone       String?
+  meetingType String
+  date        String
+  time        String
+  message     String?
+  status      String   @default("planned")
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  category    String
+  author      String
+  authorRole  String?
+  publishedAt String
+  readingTime Int      @default(5)
+  featured    Boolean  @default(false)
+  status      String   @default("draft")
+  tags        String   @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  client      String?
+  sector      String?
+  sectorIcon  String   @default("🏢")
+  tagline     String?
+  description String?
+  problem     String?
+  solution    String?
+  approach    String?
+  features    String   @default("[]")
+  stack       String   @default("[]")
+  results     String   @default("[]")
+  deliverables String  @default("[]")
+  duration    String?
+  status      String   @default("draft")
+  featured    Boolean  @default(false)
+  color       String   @default("#6B5CE7")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String?
+  company   String?
+  sector    String?
+  message   String
+  rating    Int      @default(5)
+  avatar    String?
+  published Boolean  @default(false)
+  featured  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AdminSettings {
+  id           String   @id @default(cuid())
+  key          String   @unique
+  value        String
+  updatedAt    DateTime @updatedAt
+}
