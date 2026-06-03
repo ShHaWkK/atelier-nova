@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, sans-serif;
+    --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-dm-serif: 'DM Serif Display', Georgia, serif;
+    --font-jetbrains: 'JetBrains Mono', Consolas, monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: #E8E5F0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+  }
+
+  ::selection {
+    background: rgba(107, 92, 231, 0.15);
+    color: #1A1A2E;
+  }
+
+  :focus-visible {
+    outline: 2px solid #6B5CE7;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-text-primary;
+    font-feature-settings: 'ss01' 1;
+  }
+
+  p {
+    @apply text-text-secondary;
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  /* Scrollbar custom */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F0EDE8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D4CEEE;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6B5CE7;
+  }
+}
+
+@layer components {
+  /* Section containers */
+  .section-padding {
+    @apply py-20 md:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16;
+  }
+
+  /* Section label (overline) */
+  .section-label {
+    @apply inline-flex items-center gap-2 text-caption font-semibold uppercase tracking-widest text-accent;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #6B5CE7 0%, #4F46E5 50%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #F0EDE8 0%,
+      #E8E5F0 50%,
+      #F0EDE8 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  /* Admin sidebar item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-body-s font-medium transition-all duration-150;
+  }
+
+  .nav-item-active {
+    @apply bg-accent text-white shadow-accent;
+  }
+
+  .nav-item-inactive {
+    @apply text-gray-400 hover:bg-white/8 hover:text-white;
+  }
+
+  /* Form field group */
+  .field-group {
+    @apply flex flex-col gap-1.5;
+  }
+
+  /* Prose styles for blog */
+  .prose-nova {
+    @apply text-body-m text-text-secondary leading-relaxed;
+  }
+
+  .prose-nova h2 {
+    @apply text-heading-m text-text-primary mt-10 mb-4 font-display;
+  }
+
+  .prose-nova h3 {
+    @apply text-heading-s text-text-primary mt-8 mb-3 font-display;
+  }
+
+  .prose-nova p {
+    @apply mb-5 leading-[1.8];
+  }
+
+  .prose-nova ul {
+    @apply space-y-2 mb-5 pl-5;
+    list-style-type: disc;
+  }
+
+  .prose-nova li {
+    @apply text-text-secondary;
+  }
+
+  .prose-nova strong {
+    @apply font-semibold text-text-primary;
+  }
+
+  .prose-nova a {
+    @apply text-accent underline underline-offset-2 hover:text-accent-hover;
+  }
+
+  .prose-nova blockquote {
+    @apply border-l-4 border-accent pl-5 py-1 my-6 italic text-text-secondary;
+  }
+
+  .prose-nova code {
+    @apply font-mono text-sm bg-accent-soft text-accent px-1.5 py-0.5 rounded;
+  }
+
+  /* Admin table rows */
+  .table-row-hover {
+    @apply transition-colors duration-100 hover:bg-background/60;
+  }
+}
+
+@layer utilities {
+  /* Noise texture overlay */
+  .noise {
+    position: relative;
+  }
+
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
