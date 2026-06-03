@@ -29,8 +29,8 @@ export default function HomePage() {
         <div className="absolute right-0 top-1/4 w-[600px] h-[600px] rounded-full pointer-events-none hero-glow-right" />
 
         {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 md:px-8 pt-28 pb-20">
-          <div className="grid lg:grid-cols-[1fr_480px] gap-16 items-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 md:px-10 pt-32 pb-24">
+          <div className="grid lg:grid-cols-[1fr_500px] xl:grid-cols-[1fr_540px] gap-12 xl:gap-20 items-center">
 
             {/* Left */}
             <div>
@@ -323,7 +323,7 @@ export default function HomePage() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ background: bg }}
                 >
-                  <Icon className="w-5.5 h-5.5" style={{ color: accent }} strokeWidth={1.5} />
+                  <Icon className="w-5 h-5" style={{ color: accent }} strokeWidth={1.5} />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-[16px] font-bold text-[#0F0F1A] mb-2 font-display group-hover:text-[#6B5CE7] transition-colors">{title}</h3>

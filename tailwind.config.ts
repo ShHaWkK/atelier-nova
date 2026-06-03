@@ -92,6 +92,11 @@ const config: Config = {
         'label': ['0.8125rem', { lineHeight: '1.4', fontWeight: '600' }],
         'caption': ['0.75rem', { lineHeight: '1.4', fontWeight: '500', letterSpacing: '0.01em' }],
       },
+      spacing: {
+        '4.5': '1.125rem',
+        '13': '3.25rem',
+        '18': '4.5rem',
+      },
       borderRadius: {
         sm: '6px',
         md: '10px',
