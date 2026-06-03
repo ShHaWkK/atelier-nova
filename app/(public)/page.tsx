@@ -545,23 +545,26 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Briefcase, label: 'Conseil & Services', color: '#6B5CE7' },
-              { icon: Utensils, label: 'Restauration', color: '#D4511C' },
-              { icon: GraduationCap, label: 'Formation', color: '#059669' },
-              { icon: Building2, label: 'Immobilier', color: '#2563EB' },
-              { icon: Heart, label: 'Bien-être & Santé', color: '#DB2777' },
-              { icon: ShoppingBag, label: 'Commerce', color: '#D97706' },
-              { icon: Shield, label: 'IT & Cybersécurité', color: '#1A1A2E' },
-              { icon: Users, label: 'Associations', color: '#059669' },
-            ].map(({ icon: Icon, label, color }) => (
+              { icon: Briefcase, label: 'Conseil & Services', color: '#6B5CE7', bg: '#EDE9FF' },
+              { icon: Utensils, label: 'Restauration', color: '#D4511C', bg: '#FEF2EE' },
+              { icon: GraduationCap, label: 'Formation', color: '#059669', bg: '#D1FAE5' },
+              { icon: Building2, label: 'Immobilier', color: '#2563EB', bg: '#DBEAFE' },
+              { icon: Heart, label: 'Bien-être & Santé', color: '#DB2777', bg: '#FCE7F3' },
+              { icon: ShoppingBag, label: 'Commerce', color: '#D97706', bg: '#FEF3C7' },
+              { icon: Shield, label: 'IT & Cybersécurité', color: '#334155', bg: '#F1F5F9' },
+              { icon: Users, label: 'Associations', color: '#059669', bg: '#D1FAE5' },
+            ].map(({ icon: Icon, label, color, bg }) => (
               <div
                 key={label}
-                className="flex items-center gap-3 p-4 rounded-xl border border-[#E8E5F0] bg-[#F8F7F4] hover:border-[#6B5CE7]/25 hover:bg-white transition-all duration-200 cursor-default group"
+                className="flex items-center gap-3.5 p-5 rounded-2xl border border-[#E8E5F0] bg-white hover:shadow-[0_4px_20px_rgba(107,92,231,0.08)] hover:-translate-y-0.5 transition-all duration-200 cursor-default group"
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${color}15` }}>
-                  <Icon className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" style={{ color }} strokeWidth={1.5} />
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: bg }}
+                >
+                  <Icon className="w-5 h-5" style={{ color }} strokeWidth={1.5} />
                 </div>
                 <p className="text-[13px] font-semibold text-[#0F0F1A] leading-tight">{label}</p>
               </div>
